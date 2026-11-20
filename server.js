@@ -1,4 +1,4 @@
-// MundoChat - servidor de señalización y emparejamiento (prototipo)
+// MundoChat - servidor de señalización, emparejamiento y protección (prototipo)
 const express = require('express');
 const http = require('http');
 const { WebSocketServer } = require('ws');
@@ -30,21 +30,42 @@ app.use(express.static('public'));
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 
-let waiting = null;                  // usuario esperando pareja
-const reportsByIp = new Map();       // ip -> cantidad de reportes recibidos
-const bannedUntil = new Map();       // ip -> timestamp fin de bloqueo
+// Una cola de espera por modo: 'video' y 'text'
+const waiting = { video: null, text: null };
+const reportsByIp = new Map();   // ip -> reportes recibidos
+const bannedUntil = new Map();   // ip -> fin del bloqueo
 const REPORTS_TO_BAN = 3;
-const BAN_MS = 60 * 60 * 1000;       // 1 hora
+const BAN_REPORTS_MS = 60 * 60 * 1000;   // 1 hora por reportes
+const STRIKES_TO_BAN = 5;
+const BAN_STRIKES_MS = 10 * 60 * 1000;   // 10 min por mensajes bloqueados
 
 const send = (ws, obj) => { if (ws && ws.readyState === 1) ws.send(JSON.stringify(obj)); };
 
+// ---------- Filtro de mensajes ----------
+const normalize = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const BAD_WORDS = [
+  'nude', 'nudes', 'desnud', 'porn', 'sexting', 'onlyfans', 'sexcam', 'webcam sex',
+  'tetas', 'verga', 'pene', 'follar', 'mamada', 'putita', 'hentai',
+  'whatsapp', 'telegram', 'snapchat', 'instagram', 'discord', 'cashapp', 'paypal'
+];
+function checkMessage(raw) {
+  const t = normalize(raw);
+  const compact = t.replace(/[\s.\-()_]/g, '');
+  if (/https?:|www\.|[a-z0-9-]+\.(com|net|org|io|me|co|ly|xyz|ru|cc|app|tv)\b/.test(t)) return 'No se permiten enlaces.';
+  if (/@/.test(t)) return 'No se permiten correos ni usuarios de redes.';
+  if (/\d{7,}/.test(compact)) return 'No se permite compartir números de teléfono.';
+  if (BAD_WORDS.some(w => t.includes(w))) return 'Ese mensaje rompe las normas de la comunidad.';
+  return null;
+}
+
+// ---------- Emparejamiento ----------
 function broadcastOnline() {
   const n = wss.clients.size;
   for (const c of wss.clients) send(c, { type: 'online', count: n });
 }
 
 function leave(ws) {
-  if (waiting === ws) waiting = null;
+  for (const k of Object.keys(waiting)) if (waiting[k] === ws) waiting[k] = null;
   const p = ws.partner;
   if (p) {
     p.partner = null;
@@ -53,18 +74,19 @@ function leave(ws) {
   ws.partner = null;
 }
 
-function join(ws) {
+function join(ws, mode) {
   leave(ws);
-  if (waiting && waiting !== ws && waiting.readyState === 1) {
-    const other = waiting;
-    waiting = null;
+  ws.mode = mode === 'text' ? 'text' : 'video';
+  const other = waiting[ws.mode];
+  if (other && other !== ws && other.readyState === 1) {
+    waiting[ws.mode] = null;
     ws.partner = other;
     other.partner = ws;
-    send(other, { type: 'matched', initiator: true });
-    send(ws, { type: 'matched', initiator: false });
+    send(other, { type: 'matched', initiator: true, mode: ws.mode });
+    send(ws, { type: 'matched', initiator: false, mode: ws.mode });
   } else {
-    waiting = ws;
-    send(ws, { type: 'waiting' });
+    waiting[ws.mode] = ws;
+    send(ws, { type: 'waiting', mode: ws.mode });
   }
 }
 
@@ -77,7 +99,9 @@ wss.on('connection', (ws, req) => {
   }
   ws.ip = ip;
   ws.partner = null;
+  ws.mode = 'video';
   ws.msgTimes = [];
+  ws.strikes = 0;
   broadcastOnline();
 
   ws.on('message', (raw) => {
@@ -86,25 +110,38 @@ wss.on('connection', (ws, req) => {
 
     switch (m.type) {
       case 'join':
-        join(ws);
+        join(ws, m.mode);
         break;
       case 'next':
-        leave(ws);
-        join(ws);
+        join(ws, m.mode || ws.mode);
         break;
       case 'stop':
         leave(ws);
         break;
-      case 'signal':   // offer / answer / ice
-        if (ws.partner) send(ws.partner, { type: 'signal', data: m.data });
+      case 'signal':
+        if (ws.partner && ws.mode === 'video') send(ws.partner, { type: 'signal', data: m.data });
         break;
       case 'chat': {
+        if (!ws.partner) return;
         const now = Date.now();
         ws.msgTimes = ws.msgTimes.filter(t => now - t < 3000);
-        if (ws.msgTimes.length >= 5) return;           // límite de mensajes
+        if (ws.msgTimes.length >= 5) return;
         ws.msgTimes.push(now);
-        const text = String(m.text || '').slice(0, 500);
-        if (text && ws.partner) send(ws.partner, { type: 'chat', text });
+        const text = String(m.text || '').trim().slice(0, 500);
+        if (!text) return;
+        const problem = checkMessage(text);
+        if (problem) {
+          ws.strikes++;
+          send(ws, { type: 'blocked', reason: problem });
+          if (ws.strikes >= STRIKES_TO_BAN) {
+            bannedUntil.set(ws.ip, Date.now() + BAN_STRIKES_MS);
+            send(ws, { type: 'banned' });
+            ws.close();
+          }
+          return;
+        }
+        send(ws.partner, { type: 'chat', text });
+        send(ws, { type: 'sent', text });
         break;
       }
       case 'report': {
@@ -113,7 +150,7 @@ wss.on('connection', (ws, req) => {
         const count = (reportsByIp.get(p.ip) || 0) + 1;
         reportsByIp.set(p.ip, count);
         if (count >= REPORTS_TO_BAN) {
-          bannedUntil.set(p.ip, Date.now() + BAN_MS);
+          bannedUntil.set(p.ip, Date.now() + BAN_REPORTS_MS);
           reportsByIp.delete(p.ip);
           send(p, { type: 'banned' });
           p.close();
