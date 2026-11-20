@@ -1,0 +1,8 @@
+{
+  "name": "mundochat",
+  "version": "0.1.0",
+  "description": "Prototipo de chat y video aleatorio solo para mayores de 18",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "express": "^4.19.2", "ws": "^8.18.0" }
+}
