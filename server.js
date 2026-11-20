@@ -25,6 +25,25 @@ app.get('/config', (req, res) => {
   res.json({ iceServers });
 });
 
+// Los archivos del sitio pueden estar en la raíz o dentro de public/.
+// Si existen en la raíz (versión más reciente subida a mano), se usan primero.
+const path = require('path');
+const fs = require('fs');
+const SITE_FILES = ['index.html', 'terminos.html', 'privacidad.html', 'robots.txt', 'sitemap.xml'];
+const findFile = (name) => {
+  const inRoot = path.join(__dirname, name);
+  if (fs.existsSync(inRoot)) return inRoot;
+  const inPublic = path.join(__dirname, 'public', name);
+  return fs.existsSync(inPublic) ? inPublic : null;
+};
+app.get('/', (req, res) => res.sendFile(findFile('index.html')));
+SITE_FILES.forEach((name) => {
+  app.get('/' + name, (req, res) => {
+    const f = findFile(name);
+    if (f) res.sendFile(f); else res.status(404).end();
+  });
+});
+
 app.use(express.static('public'));
 
 const server = http.createServer(app);
