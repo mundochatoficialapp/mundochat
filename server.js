@@ -12,7 +12,12 @@ app.get('/robots.txt', (req, res) => {
   res.status(200);
   res.type('text/plain');
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+
   res.send(
+    'User-agent: Google-InspectionTool\n' +
+    'Allow: /\n\n' +
+    'User-agent: Googlebot\n' +
+    'Allow: /\n\n' +
     'User-agent: *\n' +
     'Allow: /\n\n' +
     'Sitemap: https://mundochat-r14z.onrender.com/sitemap.xml\n'
