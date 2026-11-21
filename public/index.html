@@ -3,444 +3,743 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
-<meta name="google-site-verification" content="e76-GL-WwZdNeNp3KjC-Q9IgxNVP_lvLdqhBBVgR1Pw" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="e76-GL-WwZdNeNp3KjC-Q9IgxNVP_lvLdqhBBVgR1Pw">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>MundoChat | Videochat y chat aleatorio gratis sin registro</title>
-
 <meta name="description" content="Conoce personas nuevas de todo el mundo con MundoChat. Disfruta de videochat y chat de texto gratis, sin registro. Exclusivo para mayores de 18 años.">
-
-<meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">
-
 <link rel="canonical" href="https://mundochat-r14z.onrender.com/">
-
-<meta name="theme-color" content="#0F2A43">
-
+<meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="MundoChat">
-<meta property="og:title" content="MundoChat | Videochat y chat aleatorio gratis">
-<meta property="og:description" content="Conoce personas nuevas por video y texto. Gratis, sin registro y exclusivo para mayores de 18 años.">
+<meta property="og:title" content="MundoChat | Conoce personas por video o texto">
+<meta property="og:description" content="Conecta con personas de todo el mundo mediante videochat o chat de texto gratis.">
 <meta property="og:url" content="https://mundochat-r14z.onrender.com/">
-
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MundoChat | Videochat gratis">
-<meta name="twitter:description" content="Conoce personas nuevas por video y chat de texto, sin registro. Solo mayores de 18 años.">
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "MundoChat",
-  "url": "https://mundochat-r14z.onrender.com/",
-  "applicationCategory": "SocialNetworkingApplication",
-  "description": "Plataforma de chat por video y texto para conocer personas nuevas, sin registro y exclusiva para mayores de 18 años.",
-  "inLanguage": "es",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"MundoChat",
+  "url":"https://mundochat-r14z.onrender.com/",
+  "applicationCategory":"SocialNetworkingApplication",
+  "description":"Videochat y chat de texto aleatorio con personas de todo el mundo, sin registro. Solo para mayores de 18 años.",
+  "inLanguage":"es",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
 }
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --ink:#0F2A43;
-  --sea:#1F7A8C;
-  --sun:#F2B705;
-  --mist:#EAF1F5;
-  --paper:#FFFFFF;
-  --alert:#C0392B;
+:root {
+  --bg:#081321;
+  --panel:#101f31;
+  --panel2:#172a40;
+  --ink:#f4f8fc;
+  --muted:#9aadc1;
+  --cyan:#27d6c5;
+  --blue:#438cff;
+  --line:rgba(255,255,255,.09);
+  --danger:#ff6474;
 }
 
 *{box-sizing:border-box}
 
-html,body{
-  min-height:100%;
-  margin:0;
-}
+html,body{margin:0;min-height:100%;}
 
 body{
-  font-family:"Public Sans",system-ui,sans-serif;
-  background:var(--mist);
+  font-family:"DM Sans",sans-serif;
   color:var(--ink);
-  display:flex;
-  flex-direction:column;
+  background:
+    radial-gradient(ellipse at 20% 0%,rgba(39,214,197,.12),transparent 35%),
+    radial-gradient(ellipse at 90% 15%,rgba(67,140,255,.13),transparent 35%),
+    var(--bg);
 }
 
-h1,h2,h3{
-  font-family:"Bricolage Grotesque",system-ui,sans-serif;
-  margin:0;
-}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
 
 header{
+  min-height:68px;
+  padding:12px 5%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 20px;
-  background:var(--ink);
-  color:#fff;
+  border-bottom:1px solid var(--line);
+  background:rgba(8,19,33,.85);
 }
 
-header h1{
-  font-size:1.4rem;
-  letter-spacing:-.01em;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:Manrope,sans-serif;
+  font-size:1.45rem;
+  font-weight:800;
+  letter-spacing:-1px;
 }
 
-#online{
-  font-size:.9rem;
-  opacity:.85;
-}
-
-main{
-  flex:1;
+.brand-mark{
+  width:36px;height:36px;
+  border-radius:12px;
   display:grid;
-  grid-template-columns:1fr 340px;
+  place-items:center;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  color:#061523;
+  font-size:20px;
+}
+
+.header-info{
+  display:flex;
+  align-items:center;
   gap:12px;
-  padding:12px;
-  min-height:0;
-}
-
-.videos{
-  display:grid;
-  grid-template-rows:1fr 1fr;
-  gap:12px;
-  min-height:0;
-}
-
-.tile{
-  position:relative;
-  background:var(--ink);
-  border-radius:10px;
-  overflow:hidden;
-  min-height:0;
-}
-
-.tile video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  background:#000;
-}
-
-#local{
-  transform:scaleX(-1);
-}
-
-.badge{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  background:rgba(15,42,67,.8);
-  color:#fff;
-  padding:4px 10px;
-  border-radius:6px;
+  color:var(--muted);
   font-size:.85rem;
 }
 
-.side{
+.online-dot{
+  display:inline-block;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--cyan);
+  margin-right:6px;
+}
+
+main{
+  width:min(1200px,94%);
+  margin:25px auto;
+}
+
+button:focus-visible,input:focus-visible{
+  outline:3px solid var(--cyan);
+  outline-offset:3px;
+}
+
+/* PANTALLA DE BIENVENIDA */
+
+#welcome{
+  max-width:900px;
+  margin:45px auto 60px;
+  text-align:center;
+}
+
+.eyebrow{
+  color:var(--cyan);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+#welcome h1{
+  font-family:Manrope,sans-serif;
+  font-size:clamp(2.1rem,6vw,3.8rem);
+  line-height:1.08;
+  letter-spacing:-2px;
+  margin:17px 0 12px;
+}
+
+.gradient-text{
+  background:linear-gradient(90deg,var(--cyan),#7caaff);
+  color:transparent;
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+
+.welcome-description{
+  color:var(--muted);
+  font-size:1rem;
+  line-height:1.7;
+  max-width:590px;
+  margin:0 auto 32px;
+}
+
+.mode-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  text-align:left;
+}
+
+.mode-card{
+  position:relative;
+  border:2px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(145deg,#14263b,#0d1b2c);
+  padding:24px;
+  min-height:265px;
+  color:var(--ink);
+  transition:.2s ease;
+  text-align:left;
   display:flex;
   flex-direction:column;
-  background:var(--paper);
+  align-items:flex-start;
+}
+
+.mode-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(39,214,197,.55);
+}
+
+.mode-card.selected{
+  border-color:var(--cyan);
+  box-shadow:0 0 0 3px rgba(39,214,197,.10);
+}
+
+.mode-icon{
+  width:55px;height:55px;
+  display:grid;
+  place-items:center;
+  border-radius:17px;
+  background:rgba(39,214,197,.12);
+  font-size:27px;
+  margin-bottom:20px;
+}
+
+.mode-card:nth-child(2) .mode-icon{
+  background:rgba(67,140,255,.15);
+}
+
+.mode-card h2{
+  font-family:Manrope,sans-serif;
+  font-size:1.35rem;
+  margin:0 0 8px;
+}
+
+.mode-card p{
+  color:var(--muted);
+  line-height:1.55;
+  font-size:.92rem;
+  margin:0 0 18px;
+}
+
+.mode-features{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:auto;
+}
+
+.feature{
+  padding:6px 10px;
+  border-radius:20px;
+  background:rgba(255,255,255,.06);
+  color:#c8d6e5;
+  font-size:.72rem;
+}
+
+.selected-label{
+  display:none;
+  position:absolute;
+  top:15px;right:15px;
+  color:var(--cyan);
+  font-size:.75rem;
+  font-weight:800;
+}
+
+.mode-card.selected .selected-label{display:block}
+
+.age-confirm{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:10px;
+  color:#b8c8d8;
+  font-size:.83rem;
+  line-height:1.5;
+  margin:25px auto 18px;
+  max-width:540px;
+  text-align:left;
+}
+
+.age-confirm input{
+  accent-color:var(--cyan);
+  width:18px;height:18px;
+  flex-shrink:0;
+}
+
+.continue-btn{
+  width:min(360px,100%);
+  border:0;
+  border-radius:13px;
+  padding:16px 24px;
+  color:#061523;
+  font-weight:800;
+  font-size:1rem;
+  background:linear-gradient(90deg,var(--cyan),#70e7dc);
+  box-shadow:0 8px 30px rgba(39,214,197,.15);
+}
+
+.continue-btn:disabled{opacity:.35}
+
+.safe-note{
+  color:#8398ae;
+  font-size:.76rem;
+  margin-top:16px;
+}
+
+/* SALA DE CHAT */
+
+#chatApp{display:none}
+
+.chat-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.chat-heading h2{
+  font-family:Manrope,sans-serif;
+  font-size:1.2rem;
+  margin:0;
+}
+
+.secondary-btn{
+  border:1px solid var(--line);
   border-radius:10px;
-  min-height:0;
+  padding:9px 13px;
+  color:var(--ink);
+  background:var(--panel2);
+}
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(300px,.8fr);
+  gap:16px;
+  min-height:570px;
+}
+
+.video-area{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  min-height:480px;
+}
+
+.video-tile{
+  position:relative;
   overflow:hidden;
+  background:#030910;
+  border:1px solid var(--line);
+  border-radius:18px;
+  min-height:300px;
+}
+
+.video-tile video{
+  width:100%;
+  height:100%;
+  position:absolute;
+  inset:0;
+  object-fit:cover;
+  background:#030910;
+}
+
+#local{transform:scaleX(-1)}
+
+.video-label{
+  position:absolute;
+  z-index:2;
+  left:12px;
+  bottom:12px;
+  padding:7px 11px;
+  border-radius:8px;
+  background:rgba(4,13,24,.75);
+  font-size:.78rem;
+}
+
+.camera-placeholder{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  color:var(--muted);
+  text-align:center;
+  padding:15px;
+  pointer-events:none;
+}
+
+.camera-placeholder span{font-size:35px}
+.camera-placeholder small{font-size:.78rem}
+
+.side-panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  display:flex;
+  flex-direction:column;
+  min-height:480px;
+  overflow:hidden;
+}
+
+.panel-top{
+  padding:16px;
+  border-bottom:1px solid var(--line);
+  font-weight:700;
 }
 
 #log{
   flex:1;
   overflow-y:auto;
-  padding:14px;
+  padding:15px;
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:9px;
+  min-height:250px;
 }
 
 .msg{
-  max-width:85%;
-  padding:8px 12px;
-  border-radius:10px;
-  line-height:1.35;
-  word-wrap:break-word;
+  max-width:88%;
+  padding:10px 13px;
+  border-radius:13px;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+  font-size:.9rem;
 }
 
 .msg.me{
   align-self:flex-end;
-  background:var(--sea);
-  color:#fff;
+  background:#147c83;
+  color:white;
 }
 
 .msg.them{
   align-self:flex-start;
-  background:var(--mist);
+  background:#23384e;
 }
 
 .sys{
   align-self:center;
-  font-size:.85rem;
-  color:#5b7186;
+  color:var(--muted);
   text-align:center;
+  font-size:.8rem;
+  padding:7px;
 }
 
 .compose{
   display:flex;
   gap:8px;
-  padding:10px;
-  border-top:1px solid var(--mist);
+  padding:12px;
+  border-top:1px solid var(--line);
 }
 
 .compose input{
+  min-width:0;
   flex:1;
-  padding:10px 12px;
-  border:1px solid #c5d3dd;
-  border-radius:8px;
-  font:inherit;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:white;
+  background:#0b1928;
 }
 
-button{
-  font:inherit;
-  cursor:pointer;
+.compose button{
   border:0;
-  border-radius:8px;
-  padding:10px 16px;
-  font-weight:500;
-}
-
-button:focus-visible,
-input:focus-visible{
-  outline:3px solid var(--sun);
-  outline-offset:2px;
-}
-
-.primary{
-  background:var(--sun);
-  color:var(--ink);
-}
-
-.ghost{
-  background:var(--mist);
-  color:var(--ink);
-}
-
-.danger{
-  background:#fff;
-  color:var(--alert);
-  border:1px solid var(--alert);
-}
-
-button:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+  border-radius:10px;
+  padding:10px 15px;
+  color:#061523;
+  font-weight:800;
+  background:var(--cyan);
 }
 
 .actions{
   display:flex;
+  flex-wrap:wrap;
   gap:8px;
-  padding:10px;
-  border-top:1px solid var(--mist);
+  padding:12px;
+  border-top:1px solid var(--line);
 }
 
-.actions button{
+.action-btn{
   flex:1;
-}
-
-#gate{
-  position:fixed;
-  inset:0;
-  background:rgba(15,42,67,.92);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:10;
-}
-
-#gate .card{
-  background:var(--paper);
-  max-width:460px;
-  border-radius:12px;
-  padding:28px;
-}
-
-#gate h2{
-  font-size:1.6rem;
-  margin-bottom:10px;
-}
-
-#gate p{
-  line-height:1.5;
-  margin:0 0 12px;
-}
-
-#gate label{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  margin:14px 0 18px;
-  line-height:1.4;
-}
-
-.seo-content{
-  background:var(--paper);
-  padding:32px 24px;
-  margin:12px;
+  min-width:75px;
+  border:1px solid var(--line);
   border-radius:10px;
-  line-height:1.7;
+  padding:10px 8px;
+  color:var(--ink);
+  background:var(--panel2);
+  font-size:.82rem;
 }
 
-.seo-content h2{
-  font-size:1.6rem;
-  margin-bottom:12px;
+.action-btn.primary{
+  color:#061523;
+  background:var(--cyan);
+  border:0;
+  font-weight:800;
 }
 
-.seo-content h3{
-  font-size:1.15rem;
-  margin:20px 0 8px;
+.action-btn.danger{
+  color:#ff8792;
+  border-color:rgba(255,100,116,.3);
 }
 
-.seo-content p{
-  margin:0 0 12px;
-  color:#42596d;
-}
-
-footer{
-  padding:8px 20px 12px;
-  font-size:.85rem;
-  color:#5b7186;
+.camera-controls{
   display:flex;
-  gap:16px;
   flex-wrap:wrap;
   justify-content:center;
+  gap:9px;
+  margin-top:14px;
 }
 
-footer a{
-  color:var(--sea);
+.camera-controls button{
+  padding:11px 14px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--ink);
+  background:var(--panel2);
+  font-size:.83rem;
 }
+
+.camera-controls button.off{
+  background:#52232e;
+  border-color:#a34250;
+}
+
+#status{
+  color:var(--muted);
+  font-size:.85rem;
+  text-align:center;
+  padding:12px;
+}
+
+.text-only .video-area,
+.text-only .camera-controls{display:none}
+
+.text-only .chat-layout{
+  grid-template-columns:minmax(0,760px);
+  justify-content:center;
+}
+
+.text-only .side-panel{min-height:550px}
+
+.text-only #log{min-height:380px}
+
+footer{
+  padding:30px 15px;
+  border-top:1px solid var(--line);
+  color:#8298ae;
+  font-size:.8rem;
+  text-align:center;
+  line-height:2;
+}
+
+footer a{color:var(--cyan);margin:0 8px}
+
+.seo-content{
+  width:min(850px,92%);
+  margin:45px auto;
+  color:#aebed0;
+  line-height:1.75;
+  font-size:.92rem;
+}
+
+.seo-content h2,.seo-content h3{
+  font-family:Manrope,sans-serif;
+  color:#f2f7fc;
+}
+
+.seo-content h2{font-size:1.5rem}
+.seo-content h3{font-size:1.08rem;margin-top:25px}
 
 @media(max-width:800px){
-  main{
+  header{padding:12px 4%;min-height:60px}
+  main{width:94%;margin:18px auto}
+  #welcome{margin:32px auto 45px}
+  .chat-layout{grid-template-columns:1fr}
+  .video-area{
     grid-template-columns:1fr;
-    grid-template-rows:minmax(350px,1fr) 320px;
+    grid-template-rows:minmax(300px,1fr) 135px;
+    min-height:0;
+    gap:9px;
   }
+  .video-tile{min-height:0}
+  .video-tile:first-child{grid-row:1}
+  .video-tile:nth-child(2){grid-row:2}
+  .video-tile:nth-child(2) video{object-fit:cover}
+  .side-panel{min-height:420px}
+  .camera-controls{margin-bottom:12px}
+  .text-only .chat-layout{grid-template-columns:1fr}
+}
 
-  .videos{
-    grid-template-rows:1fr 1fr;
+@media(max-width:540px){
+  .brand{font-size:1.25rem}
+  .header-info{font-size:.72rem}
+  #welcome{margin-top:28px}
+  #welcome h1{letter-spacing:-1.4px}
+  .welcome-description{font-size:.9rem;padding:0 8px}
+  .mode-grid{grid-template-columns:1fr;gap:12px}
+  .mode-card{
+    min-height:190px;
+    padding:19px;
+    border-radius:17px;
   }
+  .mode-icon{
+    width:45px;height:45px;
+    border-radius:13px;
+    margin-bottom:13px;
+    font-size:23px;
+  }
+  .mode-card h2{font-size:1.2rem}
+  .mode-card p{margin-bottom:12px;font-size:.85rem}
+  .age-confirm{font-size:.77rem}
+  .chat-heading h2{font-size:1rem}
+  .video-area{
+    grid-template-rows:minmax(260px,52vh) 115px;
+  }
+  .side-panel{min-height:390px}
+  .actions{gap:6px;padding:9px}
+  .action-btn{font-size:.75rem;padding:10px 5px}
+  .camera-controls button{font-size:.76rem;padding:10px}
 }
 
 @media(prefers-reduced-motion:reduce){
-  *{
-    transition:none!important;
-  }
+  *,*::before,*::after{transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 
 <body>
 
-<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt">
-  <div class="card">
-    <h2 id="gt">Conoce gente de todo el mundo</h2>
-
-    <p>Habla por video y chat con personas al azar. No necesitas cuenta.</p>
-
-    <p>Este servicio es solo para mayores de 18 años. Las conversaciones no se guardan. Puedes reportar o saltar a cualquier persona en cualquier momento.</p>
-
-    <label>
-      <input type="checkbox" id="age">
-      Tengo 18 años o más y acepto las normas: respeto, nada de contenido sexual ni violento.
-    </label>
-
-    <button class="primary" id="enter" disabled>Entrar</button>
-  </div>
-</div>
-
 <header>
-  <h1>MundoChat</h1>
-  <span id="online" aria-live="polite"></span>
+  <div class="brand">
+    <span class="brand-mark">M</span>
+    MundoChat
+  </div>
+  <div class="header-info">
+    <span>🌎 Conecta con el mundo</span>
+    <span id="online"><span class="online-dot"></span>Conectando...</span>
+  </div>
 </header>
 
 <main>
 
-  <section class="videos" aria-label="Videochat">
-    <div class="tile">
-      <video id="remote" autoplay playsinline></video>
-      <span class="badge" id="remoteBadge">Sin conexión</span>
-    </div>
+<section id="welcome">
+  <div class="eyebrow">CONOCE · CONVERSA · CONECTA</div>
+  <h1>Personas nuevas,<br><span class="gradient-text">conversaciones reales.</span></h1>
+  <p class="welcome-description">
+    Elige cómo quieres conocer personas de diferentes lugares.
+    Puedes conversar cara a cara o comenzar con un mensaje.
+    ¡Tú decides!
+  </p>
 
-    <div class="tile">
-      <video id="local" autoplay playsinline muted></video>
-      <span class="badge">Tú</span>
-    </div>
-  </section>
+  <div class="mode-grid">
+    <button class="mode-card selected" id="videoChoice" type="button" aria-pressed="true">
+      <span class="selected-label">✓ SELECCIONADO</span>
+      <span class="mode-icon">📹</span>
+      <h2>Videochat</h2>
+      <p>Conoce personas cara a cara. Activa tu cámara y micrófono para comenzar una conversación en vivo.</p>
+      <span class="mode-features">
+        <span class="feature">Cámara en vivo</span>
+        <span class="feature">Micrófono</span>
+        <span class="feature">Conexión directa</span>
+      </span>
+    </button>
 
-  <section class="side" aria-label="Chat de texto">
+    <button class="mode-card" id="textChoice" type="button" aria-pressed="false">
+      <span class="selected-label">✓ SELECCIONADO</span>
+      <span class="mode-icon">💬</span>
+      <h2>Solo texto</h2>
+      <p>Prefieres escribir. Encuentra personas y conversa mediante mensajes sin encender tu cámara.</p>
+      <span class="mode-features">
+        <span class="feature">Sin cámara</span>
+        <span class="feature">Sin micrófono</span>
+        <span class="feature">Mensajes en vivo</span>
+      </span>
+    </button>
+  </div>
 
-    <div id="log" aria-live="polite"></div>
+  <label class="age-confirm">
+    <input type="checkbox" id="age">
+    <span>Confirmo que tengo 18 años o más y acepto las normas de convivencia de MundoChat.</span>
+  </label>
 
-    <form class="compose" id="form">
-      <input id="text" maxlength="500" placeholder="Escribe un mensaje" autocomplete="off" disabled>
-      <button class="primary" id="sendBtn" disabled>Enviar</button>
-    </form>
+  <button class="continue-btn" id="continueBtn" disabled>Continuar →</button>
+  <div class="safe-note">Gratis · Sin registro · Exclusivo para mayores de 18 años</div>
+</section>
 
-    <div class="actions">
-      <button class="primary" id="startBtn">Empezar</button>
-      <button class="ghost" id="nextBtn" disabled>Siguiente</button>
-      <button class="danger" id="reportBtn" disabled>Reportar</button>
-    </div>
+<section id="chatApp">
+  <div class="chat-heading">
+    <h2 id="modeTitle">📹 Videochat</h2>
+    <button class="secondary-btn" id="backBtn">← Cambiar modalidad</button>
+  </div>
 
-  </section>
+  <div class="chat-layout">
+    <section class="video-area" aria-label="Videollamada">
+      <div class="video-tile">
+        <video id="remote" autoplay playsinline></video>
+        <div class="camera-placeholder" id="remotePlaceholder">
+          <span>🌎</span>
+          <strong>Tu próxima conexión</strong>
+          <small>Cuando encuentres a alguien, aparecerá aquí.</small>
+        </div>
+        <span class="video-label">Persona conectada</span>
+      </div>
+
+      <div class="video-tile">
+        <video id="local" autoplay playsinline muted></video>
+        <div class="camera-placeholder" id="localPlaceholder">
+          <span>📷</span>
+          <strong>Tu cámara</strong>
+          <small>Tu imagen aparecerá aquí.</small>
+        </div>
+        <span class="video-label">Tú</span>
+      </div>
+    </section>
+
+    <section class="side-panel" aria-label="Conversación">
+      <div class="panel-top">💬 Conversación</div>
+      <div id="log" aria-live="polite">
+        <div class="sys">Pulsa Empezar para encontrar a alguien.</div>
+      </div>
+
+      <form class="compose" id="form">
+        <input id="text" maxlength="500" placeholder="Escribe un mensaje..." autocomplete="off" disabled>
+        <button id="sendBtn" disabled>Enviar</button>
+      </form>
+
+      <div class="actions">
+        <button class="action-btn primary" id="startBtn">Empezar</button>
+        <button class="action-btn" id="nextBtn" disabled>Siguiente</button>
+        <button class="action-btn danger" id="reportBtn" disabled>Reportar</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="camera-controls" id="cameraControls">
+    <button id="cameraBtn">📷 Apagar cámara</button>
+    <button id="micBtn">🎙️ Silenciar micrófono</button>
+    <button id="flipBtn">🔄 Cambiar cámara</button>
+  </div>
+
+  <div id="status" aria-live="polite">Listo para conectar.</div>
+</section>
 
 </main>
 
 <section class="seo-content">
-
   <h2>Conoce personas nuevas con MundoChat</h2>
-
-  <p>
-    MundoChat es una plataforma para conocer personas de diferentes lugares
-    mediante conversaciones aleatorias por video y chat de texto.
-    Conecta con alguien nuevo, comparte una conversación y descubre nuevas
-    amistades desde tu navegador.
-  </p>
+  <p>MundoChat es una plataforma para conocer personas de diferentes lugares mediante conversaciones aleatorias por video y chat de texto. Conecta con alguien nuevo, comparte una conversación y descubre nuevas amistades desde tu navegador.</p>
 
   <h3>¿Cómo funciona MundoChat?</h3>
+  <p>Confirma que eres mayor de edad, elige tu modalidad y pulsa el botón Empezar. El sistema buscará otra persona disponible para conversar en el mismo modo. Si deseas conocer a alguien más, utiliza el botón Siguiente.</p>
 
-  <p>
-    Es sencillo: confirma que eres mayor de edad, permite el acceso a tu
-    cámara y micrófono y pulsa el botón Empezar. El sistema buscará otra
-    persona disponible para conversar. Si deseas conocer a alguien más,
-    utiliza el botón Siguiente.
-  </p>
-
-  <h3>Chat por video y texto sin registro</h3>
-
-  <p>
-    Puedes utilizar las funciones de conversación sin crear una cuenta.
-    MundoChat ofrece una experiencia de chat aleatorio por video y texto
-    directamente desde el navegador.
-  </p>
+  <h3>Videochat y chat de texto sin registro</h3>
+  <p>Puedes elegir entre conversar por video o utilizar únicamente mensajes de texto. No necesitas crear una cuenta para comenzar a utilizar MundoChat.</p>
 
   <h3>Un espacio exclusivo para mayores de 18 años</h3>
-
-  <p>
-    MundoChat está destinado exclusivamente a personas mayores de 18 años.
-    Promovemos conversaciones respetuosas y ofrecemos una función para
-    reportar usuarios que incumplan las normas de la plataforma.
-  </p>
-
+  <p>MundoChat está destinado exclusivamente a personas mayores de 18 años. Promovemos conversaciones respetuosas y ofrecemos una función para reportar usuarios que incumplan las normas de la plataforma.</p>
 </section>
 
 <footer>
-  <span>MundoChat: videochat gratis y sin registro para mayores de 18 años.</span>
+  <div>MundoChat · Videochat y chat de texto para mayores de 18 años.</div>
   <a href="/terminos.html">Términos de uso</a>
   <a href="/privacidad.html">Privacidad</a>
 </footer>
@@ -451,262 +750,464 @@ const $ = id => document.getElementById(id);
 const log = $('log');
 const text = $('text');
 const sendBtn = $('sendBtn');
-
 const startBtn = $('startBtn');
 const nextBtn = $('nextBtn');
 const reportBtn = $('reportBtn');
 
-let ws, pc, localStream, connected = false;
+let ws, pc, localStream;
+let connected = false;
+let mode = 'video';
+let selectedMode = 'video';
+let cameraEnabled = true;
+let micEnabled = true;
+let facingMode = 'user';
+let cameraBusy = false;
 
 let ICE = {
-  iceServers: [
-    { urls: 'stun:stun.l.google.com:19302' }
-  ]
+  iceServers:[{urls:'stun:stun.l.google.com:19302'}]
 };
 
-// Filtro de edad
-$('age').addEventListener('change', e => {
-  $('enter').disabled = !e.target.checked;
-});
-
-$('enter').addEventListener('click', () => {
-  $('gate').style.display = 'none';
-  init();
-});
-
-function addMsg(kind, t) {
-  const d = document.createElement('div');
-
-  d.className = kind === 'sys' ? 'sys' : 'msg ' + kind;
-  d.textContent = t;
-
+function addMsg(kind,message){
+  const d=document.createElement('div');
+  d.className=kind==='sys'?'sys':'msg '+kind;
+  d.textContent=message;
   log.appendChild(d);
-  log.scrollTop = log.scrollHeight;
+  log.scrollTop=log.scrollHeight;
 }
 
-function setChatEnabled(on) {
-  connected = on;
-
-  text.disabled = sendBtn.disabled = !on;
-  reportBtn.disabled = !on;
-
-  $('remoteBadge').textContent = on ? 'Conectado' : 'Sin conexión';
+function setStatus(message){
+  $('status').textContent=message;
 }
 
-async function init() {
+function setChatEnabled(on){
+  connected=on;
+  text.disabled=sendBtn.disabled=!on;
+  reportBtn.disabled=!on;
+}
 
-  try {
-    ICE = await (await fetch('/config')).json();
-  } catch {}
+function send(data){
+  if(ws && ws.readyState===WebSocket.OPEN){
+    ws.send(JSON.stringify(data));
+  }
+}
 
-  try {
-    localStream = await navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: true
+function selectMode(m){
+  selectedMode=m;
+
+  $('videoChoice').classList.toggle('selected',m==='video');
+  $('textChoice').classList.toggle('selected',m==='text');
+
+  $('videoChoice').setAttribute('aria-pressed',m==='video');
+  $('textChoice').setAttribute('aria-pressed',m==='text');
+}
+
+$('videoChoice').addEventListener('click',()=>selectMode('video'));
+$('textChoice').addEventListener('click',()=>selectMode('text'));
+
+$('age').addEventListener('change',()=>{
+  $('continueBtn').disabled=!$('age').checked;
+});
+
+$('continueBtn').addEventListener('click',async()=>{
+  if(!$('age').checked)return;
+
+  $('continueBtn').disabled=true;
+  $('continueBtn').textContent='Preparando...';
+
+  try{
+    ICE=await (await fetch('/config')).json();
+  }catch(e){
+    console.warn('No se pudo cargar la configuración ICE',e);
+  }
+
+  $('welcome').style.display='none';
+  $('chatApp').style.display='block';
+
+  await setMode(selectedMode);
+  connectWs();
+
+  $('continueBtn').textContent='Continuar →';
+  $('continueBtn').disabled=false;
+});
+
+function connectWs(){
+  if(ws && ws.readyState===WebSocket.OPEN)return;
+
+  const protocol=location.protocol==='https:'?'wss://':'ws://';
+  ws=new WebSocket(protocol+location.host);
+
+  ws.onopen=()=>{
+    setStatus('Conectado al servidor. Puedes empezar.');
+  };
+
+  ws.onmessage=onServerMessage;
+
+  ws.onclose=()=>{
+    addMsg('sys','Se perdió la conexión. Recarga la página para volver a entrar.');
+    setStatus('Conexión perdida.');
+    closePeer();
+    startBtn.disabled=true;
+    nextBtn.disabled=true;
+  };
+
+  ws.onerror=()=>{
+    setStatus('No se pudo establecer conexión con el servidor.');
+  };
+}
+
+async function ensureCamera(){
+  if(localStream && localStream.getVideoTracks().length)return true;
+
+  try{
+    localStream=await navigator.mediaDevices.getUserMedia({
+      video:{facingMode:{ideal:facingMode},width:{ideal:1280},height:{ideal:720}},
+      audio:true
     });
 
-    $('local').srcObject = localStream;
+    $('local').srcObject=localStream;
+    cameraEnabled=true;
+    micEnabled=true;
 
-  } catch {
-    addMsg(
-      'sys',
-      'No pudimos acceder a tu cámara o micrófono. Permite el acceso en el navegador y recarga la página.'
-    );
+    updateCameraControls();
+    updatePlaceholders();
+    return true;
 
-    startBtn.disabled = true;
+  }catch(error){
+    console.error('Error de cámara:',error);
+    addMsg('sys','No pudimos acceder a tu cámara o micrófono. Revisa los permisos del navegador o vuelve a elegir Solo texto.');
+    setStatus('No se pudo acceder a la cámara.');
+    return false;
+  }
+}
+
+function stopCamera(){
+  if(localStream){
+    localStream.getTracks().forEach(track=>track.stop());
+    localStream=null;
+  }
+
+  $('local').srcObject=null;
+  cameraEnabled=false;
+  micEnabled=false;
+  updateCameraControls();
+  updatePlaceholders();
+}
+
+function updateCameraControls(){
+  $('cameraBtn').textContent=cameraEnabled?'📷 Apagar cámara':'📷 Encender cámara';
+  $('micBtn').textContent=micEnabled?'🎙️ Silenciar micrófono':'🔇 Activar micrófono';
+
+  $('cameraBtn').classList.toggle('off',!cameraEnabled);
+  $('micBtn').classList.toggle('off',!micEnabled);
+
+  $('cameraControls').style.display=mode==='video'?'flex':'none';
+}
+
+function updatePlaceholders(){
+  $('localPlaceholder').style.display=
+    localStream && cameraEnabled?'none':'flex';
+
+  $('remotePlaceholder').style.display=
+    $('remote').srcObject?'none':'flex';
+}
+
+async function setMode(m){
+  send({type:'stop'});
+  closePeer();
+
+  log.innerHTML='';
+  mode=m;
+
+  if(m==='video'){
+    const ok=await ensureCamera();
+
+    if(!ok){
+      mode='text';
+      stopCamera();
+      addMsg('sys','Has entrado en modo texto porque no se pudo activar la cámara.');
+    }
+  }else{
+    stopCamera();
+  }
+
+  document.body.classList.toggle('text-only',mode==='text');
+
+  $('modeTitle').textContent=
+    mode==='video'?'📹 Videochat':'💬 Chat de texto';
+
+  updateCameraControls();
+
+  startBtn.disabled=false;
+  nextBtn.disabled=true;
+
+  addMsg('sys',
+    mode==='video'
+      ?'Modo video listo. Pulsa Empezar para conocer a alguien.'
+      :'Modo solo texto listo. Pulsa Empezar para conocer a alguien.'
+  );
+
+  setStatus('Esperando que comiences.');
+}
+
+$('backBtn').addEventListener('click',()=>{
+  send({type:'stop'});
+  closePeer();
+
+  if(ws)ws.close();
+
+  stopCamera();
+
+  $('chatApp').style.display='none';
+  $('welcome').style.display='block';
+
+  selectMode(mode);
+  $('age').checked=true;
+});
+
+$('cameraBtn').addEventListener('click',()=>{
+  if(!localStream)return;
+
+  const track=localStream.getVideoTracks()[0];
+  if(!track)return;
+
+  cameraEnabled=!cameraEnabled;
+  track.enabled=cameraEnabled;
+
+  updateCameraControls();
+  updatePlaceholders();
+});
+
+$('micBtn').addEventListener('click',()=>{
+  if(!localStream)return;
+
+  const track=localStream.getAudioTracks()[0];
+  if(!track)return;
+
+  micEnabled=!micEnabled;
+  track.enabled=micEnabled;
+
+  updateCameraControls();
+});
+
+async function switchCamera(){
+  if(cameraBusy || mode!=='video')return;
+
+  cameraBusy=true;
+  $('flipBtn').disabled=true;
+
+  const oldTrack=localStream?.getVideoTracks()[0];
+
+  if(!oldTrack){
+    cameraBusy=false;
+    $('flipBtn').disabled=false;
     return;
   }
 
-  ws = new WebSocket(
-    (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host
-  );
+  const nextFacing=facingMode==='user'?'environment':'user';
 
-  ws.onmessage = onServerMessage;
+  try{
+    const newStream=await navigator.mediaDevices.getUserMedia({
+      video:{
+        facingMode:{exact:nextFacing},
+        width:{ideal:1280},
+        height:{ideal:720}
+      },
+      audio:false
+    });
 
-  ws.onclose = () => {
-    addMsg('sys', 'Conexión perdida. Recarga la página.');
-    closePeer();
-  };
+    const newTrack=newStream.getVideoTracks()[0];
 
-  addMsg('sys', 'Pulsa "Empezar" para conocer a alguien.');
-}
+    newTrack.enabled=cameraEnabled;
 
-const send = o =>
-  ws && ws.readyState === 1 && ws.send(JSON.stringify(o));
+    if(pc){
+      const sender=pc.getSenders().find(s=>s.track && s.track.kind==='video');
+      if(sender)await sender.replaceTrack(newTrack);
+    }
 
-function closePeer() {
+    $('local').srcObject=null;
 
-  if (pc) {
-    pc.close();
-    pc = null;
+    localStream.removeTrack(oldTrack);
+    localStream.addTrack(newTrack);
+
+    $('local').srcObject=localStream;
+
+    oldTrack.stop();
+    facingMode=nextFacing;
+
+    setStatus(facingMode==='user'?'Cámara frontal activa.':'Cámara trasera activa.');
+
+  }catch(error){
+    console.warn('No fue posible cambiar la cámara:',error);
+    addMsg('sys','Este dispositivo no permite cambiar de cámara en este momento.');
   }
 
-  $('remote').srcObject = null;
+  cameraBusy=false;
+  $('flipBtn').disabled=false;
+}
 
+$('flipBtn').addEventListener('click',switchCamera);
+
+function closePeer(){
+  if(pc){
+    pc.close();
+    pc=null;
+  }
+
+  $('remote').srcObject=null;
+  updatePlaceholders();
   setChatEnabled(false);
 }
 
-function createPeer() {
+function createPeer(){
+  if(!localStream)return;
 
-  pc = new RTCPeerConnection(ICE);
+  pc=new RTCPeerConnection(ICE);
 
-  localStream.getTracks().forEach(t => {
-    pc.addTrack(t, localStream);
+  localStream.getTracks().forEach(track=>{
+    pc.addTrack(track,localStream);
   });
 
-  pc.ontrack = e => {
-    $('remote').srcObject = e.streams[0];
+  pc.ontrack=e=>{
+    $('remote').srcObject=e.streams[0];
+    updatePlaceholders();
   };
 
-  pc.onicecandidate = e => {
-    if (e.candidate) {
-      send({
-        type: 'signal',
-        data: { ice: e.candidate }
-      });
+  pc.onicecandidate=e=>{
+    if(e.candidate){
+      send({type:'signal',data:{ice:e.candidate}});
+    }
+  };
+
+  pc.onconnectionstatechange=()=>{
+    if(pc && pc.connectionState==='failed'){
+      setStatus('La conexión de video falló. Intenta buscar a otra persona.');
     }
   };
 }
 
-async function onServerMessage(ev) {
+async function onServerMessage(event){
+  const m=JSON.parse(event.data);
 
-  const m = JSON.parse(ev.data);
-
-  switch (m.type) {
+  switch(m.type){
 
     case 'online':
-      $('online').textContent = m.count + ' conectados';
+      $('online').innerHTML='<span class="online-dot"></span>'+m.count+' conectados';
       break;
 
     case 'waiting':
-      addMsg('sys', 'Buscando a alguien...');
+      addMsg('sys','Buscando a alguien...');
+      setStatus('Buscando una persona disponible...');
       break;
 
     case 'banned':
-      addMsg(
-        'sys',
-        'Tu acceso fue bloqueado temporalmente por reportes de otros usuarios.'
-      );
-
+      addMsg('sys','Tu acceso fue bloqueado temporalmente por incumplir las normas o por reportes.');
       closePeer();
+      startBtn.disabled=true;
+      nextBtn.disabled=true;
       break;
 
     case 'matched':
-
-      log.innerHTML = '';
-
+      log.innerHTML='';
       closePeer();
-      createPeer();
       setChatEnabled(true);
 
-      addMsg('sys', 'Conectado con alguien. ¡Saluda!');
+      addMsg('sys','¡Conectado con alguien! Saluda para comenzar.');
+      setStatus('Hay una persona conectada.');
 
-      if (m.initiator) {
+      if(m.mode==='video' && localStream){
+        createPeer();
 
-        const offer = await pc.createOffer();
-
-        await pc.setLocalDescription(offer);
-
-        send({
-          type: 'signal',
-          data: { sdp: pc.localDescription }
-        });
+        if(m.initiator){
+          const offer=await pc.createOffer();
+          await pc.setLocalDescription(offer);
+          send({type:'signal',data:{sdp:pc.localDescription}});
+        }
       }
-
       break;
 
     case 'signal':
+      if(!pc)return;
 
-      if (!pc) return;
-
-      if (m.data.sdp) {
-
+      if(m.data.sdp){
         await pc.setRemoteDescription(m.data.sdp);
 
-        if (m.data.sdp.type === 'offer') {
-
-          const answer = await pc.createAnswer();
-
+        if(m.data.sdp.type==='offer'){
+          const answer=await pc.createAnswer();
           await pc.setLocalDescription(answer);
-
-          send({
-            type: 'signal',
-            data: { sdp: pc.localDescription }
-          });
+          send({type:'signal',data:{sdp:pc.localDescription}});
         }
-
-      } else if (m.data.ice) {
-
-        try {
+      }else if(m.data.ice){
+        try{
           await pc.addIceCandidate(m.data.ice);
-        } catch {}
+        }catch(error){
+          console.warn('Error ICE:',error);
+        }
       }
-
       break;
 
     case 'chat':
-      addMsg('them', m.text);
+      addMsg('them',m.text);
+      break;
+
+    case 'sent':
+      addMsg('me',m.text);
+      break;
+
+    case 'blocked':
+      addMsg('sys','Mensaje bloqueado: '+m.reason);
       break;
 
     case 'partner-left':
-
       closePeer();
-
-      addMsg(
-        'sys',
-        'La otra persona se fue. Pulsa "Siguiente" para buscar a alguien más.'
-      );
-
+      addMsg('sys','La otra persona se fue. Pulsa Siguiente para buscar a alguien más.');
+      setStatus('La conversación terminó.');
       break;
   }
 }
 
-startBtn.addEventListener('click', () => {
+startBtn.addEventListener('click',()=>{
+  if(!ws || ws.readyState!==WebSocket.OPEN){
+    addMsg('sys','Conectando con el servidor. Intenta de nuevo en unos segundos.');
+    return;
+  }
 
-  send({ type: 'join' });
-
-  startBtn.disabled = true;
-  nextBtn.disabled = false;
+  send({type:'join',mode});
+  startBtn.disabled=true;
+  nextBtn.disabled=false;
 });
 
-nextBtn.addEventListener('click', () => {
-
+nextBtn.addEventListener('click',()=>{
   closePeer();
-
-  log.innerHTML = '';
-
-  send({ type: 'next' });
+  log.innerHTML='';
+  send({type:'next',mode});
 });
 
-reportBtn.addEventListener('click', () => {
+reportBtn.addEventListener('click',()=>{
+  if(!connected)return;
 
-  if (!connected) return;
-
-  send({ type: 'report' });
-
-  addMsg('sys', 'Reporte enviado. Buscando a alguien nuevo...');
-
+  send({type:'report'});
   closePeer();
+  log.innerHTML='';
 
-  send({ type: 'next' });
+  addMsg('sys','Reporte enviado. Buscando a alguien nuevo...');
+  send({type:'next',mode});
 });
 
-$('form').addEventListener('submit', e => {
+$('form').addEventListener('submit',event=>{
+  event.preventDefault();
 
-  e.preventDefault();
+  const message=text.value.trim();
+  if(!message || !connected)return;
 
-  const t = text.value.trim();
+  send({type:'chat',text:message});
+  text.value='';
+});
 
-  if (!t || !connected) return;
-
-  send({
-    type: 'chat',
-    text: t
-  });
-
-  addMsg('me', t);
-
-  text.value = '';
+window.addEventListener('beforeunload',()=>{
+  if(localStream){
+    localStream.getTracks().forEach(track=>track.stop());
+  }
+  if(ws)ws.close();
 });
 </script>
 
