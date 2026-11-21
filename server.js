@@ -8,6 +8,17 @@ const fs = require('fs');
 
 const app = express();
 app.set('trust proxy', true);
+app.get('/robots.txt', (req, res) => {
+  res.status(200);
+  res.type('text/plain');
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+  res.send(
+    'User-agent: *\n' +
+    'Allow: /\n\n' +
+    'Sitemap: https://mundochat-r14z.onrender.com/sitemap.xml\n'
+  );
+});
+
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
