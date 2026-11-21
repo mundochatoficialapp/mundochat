@@ -7,12 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>MundoChat | Videochat y chat aleatorio gratis sin registro</title>
-<meta name="description" content="Conoce personas nuevas de todo el mundo con MundoChat. Disfruta de videochat y chat de texto gratis, sin registro. Exclusivo para mayores de 18 años.">
+<meta name="description" content="Conoce personas nuevas con MundoChat. Videochat y chat de texto gratis, conecta por país o ciudad, sin registro. Exclusivo para mayores de 18 años.">
 <link rel="canonical" href="https://mundochat-r14z.onrender.com/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MundoChat | Conoce personas por video o texto">
-<meta property="og:description" content="Conecta con personas de todo el mundo mediante videochat o chat de texto gratis.">
+<meta property="og:description" content="Conecta con personas por videochat o chat de texto, por país o ciudad.">
 <meta property="og:url" content="https://mundochat-r14z.onrender.com/">
 <meta name="twitter:card" content="summary">
 
@@ -23,7 +23,7 @@
   "name":"MundoChat",
   "url":"https://mundochat-r14z.onrender.com/",
   "applicationCategory":"SocialNetworkingApplication",
-  "description":"Videochat y chat de texto aleatorio con personas de todo el mundo, sin registro. Solo para mayores de 18 años.",
+  "description":"Videochat y chat de texto aleatorio, con búsqueda por país y ciudad. Solo para mayores de 18 años.",
   "inLanguage":"es",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
 }
@@ -47,8 +47,7 @@
 }
 
 *{box-sizing:border-box}
-
-html,body{margin:0;min-height:100%;}
+html,body{margin:0;min-height:100%}
 
 body{
   font-family:"DM Sans",sans-serif;
@@ -62,6 +61,11 @@ body{
 button,input{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.4;cursor:not-allowed}
+
+button:focus-visible,input:focus-visible{
+  outline:3px solid var(--cyan);
+  outline-offset:3px;
+}
 
 header{
   min-height:68px;
@@ -114,12 +118,7 @@ main{
   margin:25px auto;
 }
 
-button:focus-visible,input:focus-visible{
-  outline:3px solid var(--cyan);
-  outline-offset:3px;
-}
-
-/* PANTALLA DE BIENVENIDA */
+/* BIENVENIDA */
 
 #welcome{
   max-width:900px;
@@ -242,6 +241,93 @@ button:focus-visible,input:focus-visible{
 }
 
 .mode-card.selected .selected-label{display:block}
+
+/* UBICACIÓN */
+
+.location-box{
+  margin:24px auto 0;
+  max-width:700px;
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(16,31,49,.85);
+  text-align:left;
+}
+
+.location-box h2{
+  margin:0 0 8px;
+  font-family:Manrope,sans-serif;
+  font-size:1.15rem;
+}
+
+.location-description{
+  color:var(--muted);
+  font-size:.85rem;
+  line-height:1.5;
+  margin:0 0 16px;
+}
+
+.location-options{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.location-option{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel2);
+  color:var(--ink);
+  font-size:.82rem;
+  cursor:pointer;
+}
+
+.location-option:has(input:checked){
+  border-color:var(--cyan);
+  background:rgba(39,214,197,.09);
+}
+
+.location-option input{
+  accent-color:var(--cyan);
+  flex-shrink:0;
+}
+
+.location-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+
+.location-field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  color:#c8d6e5;
+  font-size:.8rem;
+  font-weight:700;
+}
+
+.location-field input{
+  width:100%;
+  min-width:0;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#0b1928;
+  color:white;
+}
+
+.location-hint{
+  margin:12px 0 0;
+  color:var(--muted);
+  font-size:.75rem;
+  line-height:1.5;
+}
 
 .age-confirm{
   display:flex;
@@ -519,7 +605,6 @@ button:focus-visible,input:focus-visible{
 }
 
 .text-only .side-panel{min-height:550px}
-
 .text-only #log{min-height:380px}
 
 footer{
@@ -569,6 +654,13 @@ footer a{color:var(--cyan);margin:0 8px}
   .text-only .chat-layout{grid-template-columns:1fr}
 }
 
+@media(max-width:600px){
+  .location-box{padding:15px;margin-top:18px}
+  .location-options{grid-template-columns:1fr}
+  .location-option{padding:13px}
+  .location-fields{grid-template-columns:1fr}
+}
+
 @media(max-width:540px){
   .brand{font-size:1.25rem}
   .header-info{font-size:.72rem}
@@ -591,9 +683,7 @@ footer a{color:var(--cyan);margin:0 8px}
   .mode-card p{margin-bottom:12px;font-size:.85rem}
   .age-confirm{font-size:.77rem}
   .chat-heading h2{font-size:1rem}
-  .video-area{
-    grid-template-rows:minmax(260px,52vh) 115px;
-  }
+  .video-area{grid-template-rows:minmax(260px,52vh) 115px}
   .side-panel{min-height:390px}
   .actions{gap:6px;padding:9px}
   .action-btn{font-size:.75rem;padding:10px 5px}
@@ -625,8 +715,8 @@ footer a{color:var(--cyan);margin:0 8px}
   <div class="eyebrow">CONOCE · CONVERSA · CONECTA</div>
   <h1>Personas nuevas,<br><span class="gradient-text">conversaciones reales.</span></h1>
   <p class="welcome-description">
-    Elige cómo quieres conocer personas de diferentes lugares.
-    Puedes conversar cara a cara o comenzar con un mensaje.
+    Elige cómo quieres conocer personas. Puedes conversar cara a cara,
+    escribir mensajes o encontrar personas de un país o ciudad específica.
     ¡Tú decides!
   </p>
 
@@ -655,6 +745,92 @@ footer a{color:var(--cyan);margin:0 8px}
       </span>
     </button>
   </div>
+
+  <section class="location-box">
+    <h2>🌎 ¿Dónde quieres conocer personas?</h2>
+    <p class="location-description">
+      Tú eliges cómo quieres buscar tu próxima conexión.
+    </p>
+
+    <div class="location-options">
+      <label class="location-option">
+        <input type="radio" name="searchScope" value="random" checked>
+        🌍 Cualquier lugar
+      </label>
+
+      <label class="location-option">
+        <input type="radio" name="searchScope" value="country">
+        🏳️ Por país
+      </label>
+
+      <label class="location-option">
+        <input type="radio" name="searchScope" value="city">
+        📍 País + ciudad
+      </label>
+    </div>
+
+    <div class="location-fields" id="locationFields" hidden>
+      <label class="location-field">
+        País
+        <input
+          id="countryInput"
+          type="text"
+          list="countrySuggestions"
+          maxlength="60"
+          placeholder="Ejemplo: Colombia"
+          autocomplete="off"
+        >
+        <datalist id="countrySuggestions">
+          <option value="Colombia">
+          <option value="México">
+          <option value="Argentina">
+          <option value="Perú">
+          <option value="Chile">
+          <option value="Ecuador">
+          <option value="Venezuela">
+          <option value="Brasil">
+          <option value="Estados Unidos">
+          <option value="Canadá">
+          <option value="España">
+          <option value="Panamá">
+          <option value="Costa Rica">
+          <option value="República Dominicana">
+          <option value="Guatemala">
+          <option value="Bolivia">
+          <option value="Paraguay">
+          <option value="Uruguay">
+          <option value="Honduras">
+          <option value="El Salvador">
+          <option value="Nicaragua">
+          <option value="Cuba">
+          <option value="Puerto Rico">
+          <option value="Reino Unido">
+          <option value="Francia">
+          <option value="Alemania">
+          <option value="Italia">
+          <option value="Portugal">
+          <option value="Australia">
+          <option value="Japón">
+          <option value="India">
+        </datalist>
+      </label>
+
+      <label class="location-field" id="cityField" hidden>
+        Ciudad
+        <input
+          id="cityInput"
+          type="text"
+          maxlength="60"
+          placeholder="Ejemplo: Cartagena"
+          autocomplete="off"
+        >
+      </label>
+    </div>
+
+    <p class="location-hint">
+      No solicitamos tu GPS ni mostramos tu dirección. El país y la ciudad son los que tú declares.
+    </p>
+  </section>
 
   <label class="age-confirm">
     <input type="checkbox" id="age">
@@ -726,10 +902,13 @@ footer a{color:var(--cyan);margin:0 8px}
 
 <section class="seo-content">
   <h2>Conoce personas nuevas con MundoChat</h2>
-  <p>MundoChat es una plataforma para conocer personas de diferentes lugares mediante conversaciones aleatorias por video y chat de texto. Conecta con alguien nuevo, comparte una conversación y descubre nuevas amistades desde tu navegador.</p>
+  <p>MundoChat es una plataforma para conocer personas de diferentes lugares mediante conversaciones aleatorias por video y chat de texto. Puedes buscar conexiones por país, por país y ciudad o dejar que el sistema te conecte aleatoriamente.</p>
 
   <h3>¿Cómo funciona MundoChat?</h3>
-  <p>Confirma que eres mayor de edad, elige tu modalidad y pulsa el botón Empezar. El sistema buscará otra persona disponible para conversar en el mismo modo. Si deseas conocer a alguien más, utiliza el botón Siguiente.</p>
+  <p>Confirma que eres mayor de edad, elige tu modalidad y selecciona dónde quieres conocer personas. Pulsa Empezar y el sistema buscará otra persona disponible con tus preferencias. Si deseas conocer a alguien más, utiliza el botón Siguiente.</p>
+
+  <h3>Conecta por país o ciudad</h3>
+  <p>Elige un país para conocer personas de diferentes ciudades o selecciona también una ciudad para encontrar usuarios que hayan elegido esa misma ubicación.</p>
 
   <h3>Videochat y chat de texto sin registro</h3>
   <p>Puedes elegir entre conversar por video o utilizar únicamente mensajes de texto. No necesitas crear una cuenta para comenzar a utilizar MundoChat.</p>
@@ -762,6 +941,7 @@ let cameraEnabled = true;
 let micEnabled = true;
 let facingMode = 'user';
 let cameraBusy = false;
+let currentLocation = { scope: 'random' };
 
 let ICE = {
   iceServers:[{urls:'stun:stun.l.google.com:19302'}]
@@ -791,6 +971,8 @@ function send(data){
   }
 }
 
+// Selección del modo de conversación
+
 function selectMode(m){
   selectedMode=m;
 
@@ -804,9 +986,62 @@ function selectMode(m){
 $('videoChoice').addEventListener('click',()=>selectMode('video'));
 $('textChoice').addEventListener('click',()=>selectMode('text'));
 
+// Preferencias de ubicación
+
+function updateLocationFields(){
+  const scope=document.querySelector(
+    'input[name="searchScope"]:checked'
+  )?.value || 'random';
+
+  $('locationFields').hidden=scope==='random';
+  $('cityField').hidden=scope!=='city';
+}
+
+document.querySelectorAll('input[name="searchScope"]').forEach(radio=>{
+  radio.addEventListener('change',updateLocationFields);
+});
+
+updateLocationFields();
+
+function getLocationPreference(){
+  const scope=document.querySelector(
+    'input[name="searchScope"]:checked'
+  )?.value || 'random';
+
+  if(scope==='random'){
+    return {scope:'random'};
+  }
+
+  const country=$('countryInput').value.trim();
+
+  if(!country){
+    addMsg('sys','Escribe el país donde quieres buscar personas.');
+    setStatus('Falta seleccionar el país.');
+    $('countryInput').focus();
+    return null;
+  }
+
+  if(scope==='country'){
+    return {scope:'country',country};
+  }
+
+  const city=$('cityInput').value.trim();
+
+  if(!city){
+    addMsg('sys','Escribe la ciudad donde quieres buscar personas.');
+    setStatus('Falta escribir la ciudad.');
+    $('cityInput').focus();
+    return null;
+  }
+
+  return {scope:'city',country,city};
+}
+
 $('age').addEventListener('change',()=>{
   $('continueBtn').disabled=!$('age').checked;
 });
+
+// Ingreso a la aplicación
 
 $('continueBtn').addEventListener('click',async()=>{
   if(!$('age').checked)return;
@@ -831,7 +1066,7 @@ $('continueBtn').addEventListener('click',async()=>{
 });
 
 function connectWs(){
-  if(ws && ws.readyState===WebSocket.OPEN)return;
+  if(ws && (ws.readyState===WebSocket.OPEN || ws.readyState===WebSocket.CONNECTING))return;
 
   const protocol=location.protocol==='https:'?'wss://':'ws://';
   ws=new WebSocket(protocol+location.host);
@@ -923,6 +1158,7 @@ async function setMode(m){
 
     if(!ok){
       mode='text';
+      selectMode('text');
       stopCamera();
       addMsg('sys','Has entrado en modo texto porque no se pudo activar la cámara.');
     }
@@ -962,7 +1198,10 @@ $('backBtn').addEventListener('click',()=>{
 
   selectMode(mode);
   $('age').checked=true;
+  $('continueBtn').disabled=false;
 });
+
+// Controles de cámara y micrófono
 
 $('cameraBtn').addEventListener('click',()=>{
   if(!localStream)return;
@@ -1016,7 +1255,6 @@ async function switchCamera(){
     });
 
     const newTrack=newStream.getVideoTracks()[0];
-
     newTrack.enabled=cameraEnabled;
 
     if(pc){
@@ -1046,6 +1284,8 @@ async function switchCamera(){
 }
 
 $('flipBtn').addEventListener('click',switchCamera);
+
+// WebRTC
 
 function closePeer(){
   if(pc){
@@ -1085,8 +1325,16 @@ function createPeer(){
   };
 }
 
+// Mensajes del servidor
+
 async function onServerMessage(event){
-  const m=JSON.parse(event.data);
+  let m;
+
+  try{
+    m=JSON.parse(event.data);
+  }catch(error){
+    return;
+  }
 
   switch(m.type){
 
@@ -1095,8 +1343,15 @@ async function onServerMessage(event){
       break;
 
     case 'waiting':
-      addMsg('sys','Buscando a alguien...');
-      setStatus('Buscando una persona disponible...');
+      addMsg('sys','Buscando personas según tu ubicación...');
+      setStatus('Buscando una persona disponible con tus preferencias...');
+      break;
+
+    case 'location-error':
+      addMsg('sys',m.message || 'Revisa tus preferencias de ubicación.');
+      startBtn.disabled=false;
+      nextBtn.disabled=true;
+      setStatus('No se pudo iniciar la búsqueda.');
       break;
 
     case 'banned':
@@ -1161,9 +1416,13 @@ async function onServerMessage(event){
       closePeer();
       addMsg('sys','La otra persona se fue. Pulsa Siguiente para buscar a alguien más.');
       setStatus('La conversación terminó.');
+      startBtn.disabled=false;
+      nextBtn.disabled=true;
       break;
   }
 }
+
+// Iniciar búsqueda
 
 startBtn.addEventListener('click',()=>{
   if(!ws || ws.readyState!==WebSocket.OPEN){
@@ -1171,16 +1430,36 @@ startBtn.addEventListener('click',()=>{
     return;
   }
 
-  send({type:'join',mode});
+  const location=getLocationPreference();
+  if(!location)return;
+
+  currentLocation=location;
+
+  send({type:'join',mode,location});
+
   startBtn.disabled=true;
   nextBtn.disabled=false;
 });
 
+// Siguiente persona: conserva el filtro elegido
+
 nextBtn.addEventListener('click',()=>{
+  if(!ws || ws.readyState!==WebSocket.OPEN)return;
+
   closePeer();
   log.innerHTML='';
-  send({type:'next',mode});
+
+  send({
+    type:'next',
+    mode,
+    location:currentLocation
+  });
+
+  startBtn.disabled=true;
+  nextBtn.disabled=false;
 });
+
+// Reportar y buscar otra persona
 
 reportBtn.addEventListener('click',()=>{
   if(!connected)return;
@@ -1190,8 +1469,18 @@ reportBtn.addEventListener('click',()=>{
   log.innerHTML='';
 
   addMsg('sys','Reporte enviado. Buscando a alguien nuevo...');
-  send({type:'next',mode});
+
+  send({
+    type:'next',
+    mode,
+    location:currentLocation
+  });
+
+  startBtn.disabled=true;
+  nextBtn.disabled=false;
 });
+
+// Enviar mensajes
 
 $('form').addEventListener('submit',event=>{
   event.preventDefault();
@@ -1203,10 +1492,13 @@ $('form').addEventListener('submit',event=>{
   text.value='';
 });
 
+// Cerrar recursos al salir
+
 window.addEventListener('beforeunload',()=>{
   if(localStream){
     localStream.getTracks().forEach(track=>track.stop());
   }
+
   if(ws)ws.close();
 });
 </script>
